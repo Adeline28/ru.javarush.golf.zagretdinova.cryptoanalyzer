@@ -3,11 +3,13 @@ import java.util.HashMap;
 public class Decrypter extends Alphabet {
     static char[] decryptoPhraseArray;
 
-    public static void decrypt(int key) {
-        key = -1 * key;
+    public static void decrypt(int key, char[] phraseArray) {
+       // key = -1 * key;
         double length = Alphabet.getLength();
-        char[] cryptoPhraseArray = Encrypter.cryptoPhraseArray;
-        HashMap<Character, Character> cryptoKeySet = Alphabet.createCryptoHashMap(-1 * key);
+        char[] cryptoPhraseArray = phraseArray;
+
+        //char[] cryptoPhraseArray = Encrypter.cryptoPhraseArray;
+        HashMap<Character, Character> cryptoKeySet = Alphabet.createCryptoHashMap(key);//-1 * key);
         char[] punctArray = Alphabet.getPunctArray();
         decryptoPhraseArray = new char[cryptoPhraseArray.length];
 
@@ -24,20 +26,25 @@ public class Decrypter extends Alphabet {
                     break;
                     }
                 }
+            } else {
+                decryptoPhraseArray[i] = cryptoPhraseArray[i];
             }
-            else {
-                for (int j = 0; j < punctArray.length; j++) {
-                    if (cryptoPhraseArray[i] == punctArray[j]) {
-                        decryptoPhraseArray[i] = punctArray[j];
-                        break;
-                    }
-                }
-            }
+
+            //2-Arrays Realisation
+
+//            else {
+//                for (int j = 0; j < punctArray.length; j++) {
+//                    if (cryptoPhraseArray[i] == punctArray[j]) {
+//                        decryptoPhraseArray[i] = punctArray[j];
+//                        break;
+//                    }
+//                }
+//            }
 //        for (int l = 0; l < cryptoPhraseArray.length; l++) {
             //System.out.println(cryptoPhraseArray);
 //        }
         }
-       System.out.println(decryptoPhraseArray);
+       //System.out.println(decryptoPhraseArray);
     }
 
 }
